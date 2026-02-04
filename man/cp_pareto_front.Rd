@@ -4,7 +4,7 @@
 \alias{cp_pareto_front}
 \title{Compute and Plot Pareto Front}
 \usage{
-cp_pareto_front(data, T_hope = 20, line = TRUE)
+cp_pareto_front(data, T_hope = 20, line = FALSE)
 }
 \arguments{
 \item{data}{A data frame with columns for time, SPE, nlambda, and thresh.}
@@ -14,9 +14,13 @@ cp_pareto_front(data, T_hope = 20, line = TRUE)
 \item{line}{logical(1). If TRUE, the Pareto-front points in the plot are　connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.}
 }
 \value{
-A list containing a ggplot object for the Pareto front plot and a data frame with Pareto status.
+A list containing:
+\item{Pareto_front}{A ggplot object visualizing the Pareto front.}
+\item{data}{A data frame containing the Pareto status of each configuration.}
+\item{best_configuration}{A data frame with the best \code{nlambda} and \code{thresh}.}
 }
 \description{
 This function identifies the Pareto front in a dataset based on computation time and SPE,
 and generates a plot to visualize the Pareto front.
 }
+\keyword{internal}

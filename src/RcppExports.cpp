@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // myNN_lars_cpp
 arma::vec myNN_lars_cpp(arma::vec x_input);
-RcppExport SEXP _ahtg_myNN_lars_cpp(SEXP x_inputSEXP) {
+RcppExport SEXP _glmnetconf_myNN_lars_cpp(SEXP x_inputSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -24,7 +24,7 @@ END_RCPP
 }
 // myNN_glmnet_cpp
 arma::vec myNN_glmnet_cpp(arma::vec x_input);
-RcppExport SEXP _ahtg_myNN_glmnet_cpp(SEXP x_inputSEXP) {
+RcppExport SEXP _glmnetconf_myNN_glmnet_cpp(SEXP x_inputSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -35,12 +35,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_ahtg_myNN_lars_cpp", (DL_FUNC) &_ahtg_myNN_lars_cpp, 1},
-    {"_ahtg_myNN_glmnet_cpp", (DL_FUNC) &_ahtg_myNN_glmnet_cpp, 1},
+    {"_glmnetconf_myNN_lars_cpp", (DL_FUNC) &_glmnetconf_myNN_lars_cpp, 1},
+    {"_glmnetconf_myNN_glmnet_cpp", (DL_FUNC) &_glmnetconf_myNN_glmnet_cpp, 1},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_ahtg(DllInfo *dll) {
+RcppExport void R_init_glmnetconf(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

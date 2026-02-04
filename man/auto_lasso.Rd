@@ -33,17 +33,17 @@ auto_lasso(
 \item{line}{logical(1). If TRUE, the Pareto-front points in the plot are　connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.}
 }
 \value{
-A list containing:
+A list containing the following components:
 \item{method}{A character string indicating the method used ("lars" or "glmnet").}
-\item{cv_lars}{Cross-validation results from lars (if lars is used).}
-\item{lars_model}{The lars model object (if lars is used).}
-\item{best_step}{The optimal step for the lars model (if lars is used).}
-\item{cv_glmnet}{Cross-validation results from glmnet (if glmnet is used).}
-\item{glmnet_model}{The glmnet model object (if glmnet is used).}
-\item{best_lambda}{The optimal lambda value for the glmnet model (if glmnet is used).}
-\item{coef_cv.min}{The regression coefficients for the best model.}
-\item{prediction_cv.min}{Predictions for \code{new_x} (if \code{new_x} is provided).}
-\item{settings}{The selected hyperparameters for glmnet (if glmnet is used).}
+\item{timing}{A list containing the predicted time for 'lars' and the threshold \code{T_hope}.}
+\item{configuration}{A list containing the selected configuration (e.g., \code{nlambda}, \code{thresh}) if 'glmnet' is used. NULL if 'lars' is used.}
+\item{cv}{The cross-validation result object (\code{cv.lars} or \code{cv.glmnet}).}
+\item{model}{The fitted model object (\code{lars} or \code{glmnet}).}
+\item{selection}{A list containing the best tuning parameter (\code{best_step} for 'lars', \code{best_lambda} for 'glmnet').}
+\item{coefficients}{The regression coefficients of the best model.}
+\item{prediction}{Predictions for \code{new_x} (if provided).}
+\item{Pareto_front}{Object containing Pareto front information (only for 'glmnet').}
+\item{Pareto_front_data}{Data frame of the Pareto front (only for 'glmnet').}
 }
 \description{
 This function automatically performs Lasso regression using either lars or glmnet,

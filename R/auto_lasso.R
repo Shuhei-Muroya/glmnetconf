@@ -13,17 +13,18 @@
 #' @param seed An integer specifying the random seed for reproducibility. Default is 1.
 #' @param message Logical. If `TRUE`, progress messages will be displayed. Default is `TRUE`.
 #' @param line logical(1). If TRUE, the Pareto-front points in the plot are　connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.
-#' @return A list containing:
+#'
+#' @return A list containing the following components:
 #' \item{method}{A character string indicating the method used ("lars" or "glmnet").}
-#' \item{cv_lars}{Cross-validation results from lars (if lars is used).}
-#' \item{lars_model}{The lars model object (if lars is used).}
-#' \item{best_step}{The optimal step for the lars model (if lars is used).}
-#' \item{cv_glmnet}{Cross-validation results from glmnet (if glmnet is used).}
-#' \item{glmnet_model}{The glmnet model object (if glmnet is used).}
-#' \item{best_lambda}{The optimal lambda value for the glmnet model (if glmnet is used).}
-#' \item{coef_cv.min}{The regression coefficients for the best model.}
-#' \item{prediction_cv.min}{Predictions for `new_x` (if `new_x` is provided).}
-#' \item{hyperparameters}{The selected hyperparameters for glmnet (if glmnet is used).}
+#' \item{timing}{A list containing the predicted time for 'lars' and the threshold `T_hope`.}
+#' \item{configuration}{A list containing the selected configuration (e.g., `nlambda`, `thresh`) if 'glmnet' is used. NULL if 'lars' is used.}
+#' \item{cv}{The cross-validation result object (`cv.lars` or `cv.glmnet`).}
+#' \item{model}{The fitted model object (`lars` or `glmnet`).}
+#' \item{selection}{A list containing the best tuning parameter (`best_step` for 'lars', `best_lambda` for 'glmnet').}
+#' \item{coefficients}{The regression coefficients of the best model.}
+#' \item{prediction}{Predictions for `new_x` (if provided).}
+#' \item{Pareto_front}{Object containing Pareto front information (only for 'glmnet').}
+#' \item{Pareto_front_data}{Data frame of the Pareto front (only for 'glmnet').}
 #'
 #' @details
 #' The function decides between lars and glmnet based on the computation time threshold (`T_hope`).
@@ -34,18 +35,18 @@
 #' @import glmnet
 #' @import lars
 #' @export
-auto_lasso<- function(X,y, new_x=NULL,size = 1000, T_hope = 20, seed=1,message = TRUE,line=TRUE) {
+auto_lasso<- function(X, y, new_x=NULL, size = 1000, T_hope = 20, seed=1, message = TRUE, line=TRUE) {
   X<-as.matrix(X)
   p<-ncol(X)
   y<-as.numeric(y)
   # Forecast computaion time for lars
-  lars_time<-forecast_lars_cptime(X=X,T_hope=T_hope,message=message)
+  lars_time<-forecast_lars_cptime(X=X, T_hope=T_hope, message=message)
   print(lars_time)
 
   result <- list(
     method        = NA_character_,
     timing        = list(predicted_lars_time = lars_time, T_hope = T_hope),
-    hyperparameters = NULL,
+    configuration = NULL,
     cv            = NULL,
     model         = NULL,
     selection     = list(best_step = NA_integer_, best_lambda = NA_real_),
@@ -83,9 +84,9 @@ auto_lasso<- function(X,y, new_x=NULL,size = 1000, T_hope = 20, seed=1,message =
     method<-"glmnet"
     set.seed(seed)
 
-    tuning_result<-tune_hyperparameters(X=X,size=size,T_hope=T_hope,seed=seed,message = message,line)
-    n_lambda<-round(tuning_result$hyperparameters$nlambda)
-    thresh<-tuning_result$hyperparameters$thresh
+    tuning_result<-tune_configuration(X=X,size=size,T_hope=T_hope,seed=seed,message = message,line)
+    n_lambda<-round(tuning_result$best_configuration$nlambda)
+    thresh<-tuning_result$best_configuration$thresh
 
     model1<-glmnet(X,y,family = "gaussian",alpha = 1)
     minn<-min(model1$lambda)
@@ -107,7 +108,7 @@ auto_lasso<- function(X,y, new_x=NULL,size = 1000, T_hope = 20, seed=1,message =
     result$model             <- glmnet_model
     result$selection$best_lambda    <- cv_set$lambda.min
     result$coefficients             <- coef_glmnet
-    result$hyperparameters          <- list( thresh = thresh, seq_lamabda= lam,nlambda = n_lambda)
+    result$configuration          <- list( thresh = thresh, seq_lambda= lam,nlambda = n_lambda)
     result$Pareto_front                   <- tuning_result$Pareto_front
     result$Pareto_front_data                   <- tuning_result$Pareto_front_data
 
@@ -121,3 +122,4 @@ auto_lasso<- function(X,y, new_x=NULL,size = 1000, T_hope = 20, seed=1,message =
 
   return(result)
 }
+

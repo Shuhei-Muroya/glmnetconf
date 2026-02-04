@@ -4,8 +4,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The glmnetconf package automatically provides appropriate hyperparameters for glmnet function.
-It selects the appropriate hyperparameters for glmnet based on the given data.
+The glmnetconf package automatically provides appropriate configuration for glmnet function.
+It selects the appropriate configuration for glmnet based on the given data.
 Additionally, it can compare lars and glmnet in terms of computation time and choose the better package for the task.
 
 ## Installation
@@ -56,7 +56,7 @@ X_test  <- X[-train_ind, ]
 y_test  <- y[-train_ind]
 
 
-# Automatically select the hyperparameters and compute the lasso, predict for the test data.
+# Automatically select the configuration and compute the lasso, predict for the test data.
 result<-auto_lasso(X_train, y_train, new_x=X_test,T_hope=20)
 
 # Check the estimated coefficients
@@ -64,7 +64,7 @@ print(result$coefficients)
 
 # Check the Pareto front and the tuned configuration (if glmnet was used)
 print(result$Pareto_front)
-print(result$hyperparameters)
+print(result$configuration)
 
 # Test error
 mse_glmnetconf <-mean((y_test - result$prediction)^2)

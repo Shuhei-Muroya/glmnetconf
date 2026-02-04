@@ -1,0 +1,20 @@
+Package: glmnetconf
+Title: Automatic Configuration Tuning for 'glmnet' Function
+Version: 1.0.0
+Authors@R: person(given = "Shuhei", family = "Muroya", role = c("aut", "cre"), email = "muroya.shuhei.697@s.kyushu-u.ac.jp", comment = c(ORCID = "0009-0009-0609-8890"))
+Description: Provides an automated configuration tuning framework for Lasso regression models using the 'glmnet' package. It optimizes model configurations to minimize prediction error within a specified time budget.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    dplyr,
+    ggplot2 (>= 3.5.0),
+    glmnet,
+    lars,
+    MASS,
+    Rcpp,
+    readr
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo

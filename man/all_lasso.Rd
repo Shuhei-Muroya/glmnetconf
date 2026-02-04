@@ -4,7 +4,7 @@
 \alias{all_lasso}
 \title{Perform Lasso Regression Using lars and glmnet}
 \usage{
-all_lasso(X, y, nlambda = 100, thresh = 1e-07, seed = 1)
+all_lasso(X, y, nlambda = 100, thresh = 1e-07, seed = 1, new_x = NULL)
 }
 \arguments{
 \item{X}{A matrix or data frame of predictor variables.}
