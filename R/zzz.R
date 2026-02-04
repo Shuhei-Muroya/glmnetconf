@@ -48,18 +48,7 @@
   nn_files("lars", c(0, 2, 4, 6), "model_params_lars")
   nn_files("glmnet", c(0, 2, 4, 6), "model_params_glmnet")
 
-  # x.csv と y.csv をロード
-  data_files <- list(
-    list(file = "x.csv", varname = "x"),
-    list(file = "y.csv", varname = "y"),
-    list(file = "x_test.csv", varname = "x_test"),
-    list(file = "y_test.csv", varname = "y_test")
-  )
 
-  for (spec in data_files) {
-    filepath <- system.file("extdata", spec$file, package = pkgname)
-    safe_load_csv(filepath, spec$varname)
-  }
 }
 
 .onAttach <- function(libname, pkgname) {
