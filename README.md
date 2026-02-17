@@ -32,11 +32,11 @@ library(MASS)
 library(glmnet)
 
 # Prepare data (Generate dummy data)
-data<-data_generation(N_train = 1500, N_test = 100, p = 800, rho = 0.5, sparse_rate = 0.5, sigma = 1)
-X_train <- data$X_train
-y_train<-data$y_train
-X_test  <-  data$X_test
-y_test  <- data$y_test
+dat <- data_generation(N_train = 1500, N_test = 100, p = 800, rho = 0.5, sparse_rate = 0.5, sigma = 1)
+X_train <- dat$X_train
+y_train <- dat$y_train
+X_test  <- dat$X_test
+y_test  <- dat$y_test
 
 
 # Automatically select the configuration and compute the lasso, predict for the test data.
