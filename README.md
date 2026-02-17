@@ -32,28 +32,11 @@ library(MASS)
 library(glmnet)
 
 # Prepare data (Generate dummy data)
-set.seed(1)
-N_train <- 1500
-N_test  <- 100
-N_total <- N_train + N_test
-p <- 800
-rho <- 0.5
-
-# Prepare Covariance Matrix
-Sigma <- matrix(rho, nrow = p, ncol = p)
-diag(Sigma) <- 1
-
-# Generate full dataset
-X <- mvrnorm(n = N_total, mu = rep(0, p), Sigma = Sigma)
-beta_true <- c(rep(1, p/2), rep(0, p/2))
-y <- X %*% beta_true + rnorm(N_total)
-
-# Split into Training and Testing sets
-train_ind <- 1:N_train
-X_train <- X[train_ind, ]
-y_train <- y[train_ind]
-X_test  <- X[-train_ind, ]
-y_test  <- y[-train_ind]
+data<-data_generation(N_train = 1500, N_test = 100, p = 800, rho = 0.5, sparse_rate = 0.5, sigma = 1)
+X_train <- data$X_train
+y_train<-data$y_train
+X_test  <-  data$X_test
+y_test  <- data$y_test
 
 
 # Automatically select the configuration and compute the lasso, predict for the test data.

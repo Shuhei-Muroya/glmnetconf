@@ -4,12 +4,12 @@
 \name{glmnetconf-package}
 \alias{glmnetconf}
 \alias{glmnetconf-package}
-\title{glmnetconf: What the Package Does (One Line, Title Case)}
+\title{glmnetconf: Automatic Configuration Tuning for 'glmnet' Function}
 \description{
-What the package does (one paragraph).
+Provides an automated configuration tuning framework for Lasso regression models using the 'glmnet' package. It optimizes model configurations to minimize prediction error within a specified time budget.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Shuhei Muroya \email{muroya.shuhei.697@s.kyushu-u.ac.jp} (\href{https://orcid.org/0009-0009-0609-8890}{ORCID})
 
 }
 \keyword{internal}
