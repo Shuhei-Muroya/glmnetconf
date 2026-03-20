@@ -46,8 +46,7 @@ result<-auto_lasso(X_train, y_train, new_x=X_test,T_hope=20)
 print(result$coefficients)
 
 # Check the Pareto front and the tuned configuration (if glmnet was used)
-print(result$Pareto_front)
-print(result$configuration)
+plot(result)
 
 # Test error
 mse_glmnetconf <-mean((y_test - result$prediction)^2)

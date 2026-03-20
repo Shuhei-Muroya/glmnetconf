@@ -37,7 +37,16 @@
 #' @export
 auto_lasso<- function(X, y, new_x=NULL, size = 1000, T_hope = 20, seed=1, message = TRUE, line=TRUE) {
   X<-as.matrix(X)
+  n<-nrow(X)
   p<-ncol(X)
+  limit <- 3000
+  if (n > limit || p > limit) {
+    warning(sprintf(
+      "Input dimensions (n=%d, p=%d) exceed the surrogate model's training range (max %d).
+      Prediction of computation time and accuracy may be unreliable.",
+      n, p, limit
+    ), call. = FALSE)
+  }
   y<-as.numeric(y)
   # Forecast computaion time for lars
   lars_time<-forecast_lars_cptime(X=X, T_hope=T_hope, message=message)
@@ -119,7 +128,7 @@ auto_lasso<- function(X, y, new_x=NULL, size = 1000, T_hope = 20, seed=1, messag
     }
 
   }
-
+  class(result) <- "glmnetconf"
   return(result)
 }
 
