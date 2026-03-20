@@ -16,6 +16,8 @@ all_lasso(X, y, nlambda = 100, thresh = 1e-07, seed = 1, new_x = NULL)
 \item{thresh}{A numeric value specifying the convergence threshold for glmnet. Default is \code{1e-7}.}
 
 \item{seed}{An integer seed for reproducibility. Default is 1.}
+
+\item{new_x}{Optional. A matrix or data frame for prediction. If provided, predictions will be made for \code{new_x}.}
 }
 \value{
 A list containing:

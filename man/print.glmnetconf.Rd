@@ -9,6 +9,8 @@
 \arguments{
 \item{x}{A \code{glmnetconf} object.}
 
+\item{digits}{The number of significant digits to use when printing Deviance.}
+
 \item{...}{Further arguments passed to or from other methods.}
 }
 \description{

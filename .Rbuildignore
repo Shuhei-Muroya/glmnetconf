@@ -1,3 +1,9 @@
 ^LICENSE\.md$
 ^glmnetconf\.Rproj$
 ^\.Rproj\.user$
+^inst/extdata/x\.csv$
+^inst/extdata/y\.csv$
+^inst/extdata/x_test\.csv$
+^inst/extdata/y_test\.csv$
+^inst/extdata/x_input_lars\.csv$
+^inst/extdata/parameter_old$

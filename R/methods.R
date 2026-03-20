@@ -1,6 +1,7 @@
 #' Print Method for glmnetconf Objects
 #'
 #' @param x A \code{glmnetconf} object.
+#' @param digits The number of significant digits to use when printing Deviance.
 #' @param ... Further arguments passed to or from other methods.
 #' @export
 #' @method print glmnetconf
@@ -50,7 +51,7 @@ print.glmnetconf <- function(x, digits = max(3, getOption("digits") - 3), ...) {
 #' @param ... Further arguments passed to or from other methods.
 #' @export
 #' @method plot glmnetconf
-plot.glmnetconf <- function(x) {
+plot.glmnetconf <- function(x, ...) {
 
   if (is.null(x$Pareto_front)) {
     cat("Decision: LARS selected because it was predicted to be faster than T_hope.\n")

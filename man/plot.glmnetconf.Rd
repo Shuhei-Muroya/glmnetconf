@@ -4,7 +4,7 @@
 \alias{plot.glmnetconf}
 \title{Plot Method for glmnetconf Objects}
 \usage{
-\method{plot}{glmnetconf}(x)
+\method{plot}{glmnetconf}(x, ...)
 }
 \arguments{
 \item{x}{A \code{glmnetconf} object.}
