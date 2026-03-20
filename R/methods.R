@@ -55,6 +55,9 @@ plot.glmnetconf <- function(x) {
   if (is.null(x$Pareto_front)) {
     cat("Decision: LARS selected because it was predicted to be faster than T_hope.\n")
   } else {
+    cat("\nSelected Configuration (via Surrogate Model):\n")
+    cat(sprintf("  - Convergence Threshold (thresh): %.3e\n", x$configuration$thresh))
+    cat(sprintf("  - Number of Lambda values (nlambda): %d\n", x$configuration$nlambda))
     return(x$Pareto_front)
   }
 }
