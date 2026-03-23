@@ -2,9 +2,7 @@
 
 S3method(plot,glmnetconf)
 S3method(print,glmnetconf)
-export(all_lasso)
 export(auto_lasso)
-export(cp_pareto_front)
 export(forecast_lars_cptime)
 export(tune_configuration)
 import(Rcpp)

@@ -14,8 +14,6 @@
 #' @import dplyr
 #' @import ggplot2
 #' @keywords internal
-#' @export
-#'
 #'
 cp_pareto_front <- function(data, T_hope=20, line=FALSE) {
   data <- as.data.frame(data)

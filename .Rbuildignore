@@ -7,3 +7,4 @@
 ^inst/extdata/y_test\.csv$
 ^inst/extdata/x_input_lars\.csv$
 ^inst/extdata/parameter_old$
+^all_lasso\.R$
