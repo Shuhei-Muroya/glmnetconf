@@ -9,10 +9,10 @@
 #' @param y A numeric vector of response variables.
 #' @param new_x Optional. A matrix or data frame for prediction. If provided, predictions will be made for `new_x`.
 #' @param size An integer specifying the number of samples for the glmnet lambda search. Default is 1000.
-#' @param T_hope A numeric value specifying the computation time threshold to decide between lars and glmnet. Default is 20.
+#' @param T_hope A numeric value specifying the computation time threshold (in seconds) to decide between lars and glmnet. Default is 20 s.
 #' @param seed An integer specifying the random seed for reproducibility. Default is 1.
 #' @param message Logical. If `TRUE`, progress messages will be displayed. Default is `TRUE`.
-#' @param line logical(1). If TRUE, the Pareto-front points in the plot are　connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.
+#' @param line logical(1). If TRUE, the Pareto-front points in the plot are connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.
 #'
 #' @return A list containing the following components:
 #' \item{method}{A character string indicating the method used ("lars" or "glmnet").}
@@ -25,12 +25,10 @@
 #' \item{prediction}{Predictions for `new_x` (if provided).}
 #' \item{Pareto_front}{Object containing Pareto front information (only for 'glmnet').}
 #' \item{Pareto_front_data}{Data frame of the Pareto front (only for 'glmnet').}
-#'
 #' @details
 #' The function decides between lars and glmnet based on the computation time threshold (`T_hope`).
 #' If `T_hope` is greater than the estimated time for lars, the function uses lars for Lasso regression.
 #' Otherwise, glmnet is used. Cross-validation is performed to select the optimal model.
-#'
 #' @import dplyr
 #' @import glmnet
 #' @import lars

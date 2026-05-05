@@ -5,7 +5,7 @@
 #'
 #' @param data A data frame with columns for time, SPE, nlambda, and thresh.
 #' @param T_hope A numeric value representing the desired computation time threshold. Default is 20.
-#' @param line logical(1). If TRUE, the Pareto-front points in the plot are　connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.
+#' @param line logical(1). If TRUE, the Pareto-front points in the plot are connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.
 #' @return A list containing:
 #' \item{Pareto_front}{A ggplot object visualizing the Pareto front.}
 #' \item{data}{A data frame containing the Pareto status of each configuration.}
@@ -18,7 +18,6 @@
 cp_pareto_front <- function(data, T_hope=20, line=FALSE) {
   data <- as.data.frame(data)
   colnames(data) <- c("Time", "SPE", "params_nlambda", "params_thresh")
-
   df <- data %>%
     rowwise() %>%
     mutate(
@@ -29,9 +28,6 @@ cp_pareto_front <- function(data, T_hope=20, line=FALSE) {
       )
     ) %>%
     ungroup()
-
-
-  # Solve teh best configuration
   cand_idx <- which(df$Type == "Pareto Front" & df$Time <= T_hope)
   if (length(cand_idx) >= 1) {
     # Case 1: constrained candidates exist → choose best accuracy
@@ -60,7 +56,6 @@ cp_pareto_front <- function(data, T_hope=20, line=FALSE) {
   df_front <- df %>%
     dplyr::filter(Type %in% c("Pareto Front", "Best Configuration")) %>%
     dplyr::arrange(SPE)
-
 
   # Plot Pareto front
   p <- ggplot() +
@@ -149,7 +144,5 @@ cp_pareto_front <- function(data, T_hope=20, line=FALSE) {
       vjust = -0.5,
       size  = 7
     )
-
   return(list(Pareto_front=p, data = df, best_configuration=best_configuration))
 }
-

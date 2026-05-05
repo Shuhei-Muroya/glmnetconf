@@ -30,7 +30,7 @@ auto_lasso(
 
 \item{message}{Logical. If \code{TRUE}, progress messages will be displayed. Default is \code{TRUE}.}
 
-\item{line}{logical(1). If TRUE, the Pareto-front points in the plot are　connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.}
+\item{line}{logical(1). If TRUE, the Pareto-front points in the plot are connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.}
 }
 \value{
 A list containing the following components:

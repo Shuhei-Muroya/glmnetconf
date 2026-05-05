@@ -11,7 +11,7 @@ cp_pareto_front(data, T_hope = 20, line = FALSE)
 
 \item{T_hope}{A numeric value representing the desired computation time threshold. Default is 20.}
 
-\item{line}{logical(1). If TRUE, the Pareto-front points in the plot are　connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.}
+\item{line}{logical(1). If TRUE, the Pareto-front points in the plot are connected with a polyline (frontier line). If FALSE, only the points are shown. Default is TRUE.}
 }
 \value{
 A list containing:
