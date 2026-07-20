@@ -12,7 +12,7 @@
 #' @import Rcpp
 #' @export
 forecast_lars_cptime <- function(X, T_hope = 20, message = TRUE) {
-  x_input <- make_input(X)
+  x_input <- make_input_lars(X)
   x_input <- as.numeric(x_input)
   x_input <- c(x_input[1:(length(x_input) - 5)], rev(tail(x_input, 5))) # Temporary fix
   result <- myNN_lars_cpp(x_input)

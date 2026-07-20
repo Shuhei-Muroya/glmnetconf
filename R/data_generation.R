@@ -26,6 +26,7 @@
 #' }
 #' @importFrom MASS mvrnorm
 #' @importFrom stats rnorm
+#' @export
 data_generation <- function(N_train = 1500, N_test = 100, p = 800,
                             rho = 0.5, sparse_rate = 0.5, sigma = 1,seed=1) {
   set.seed(seed)

@@ -24,7 +24,7 @@ auto_lasso(
 
 \item{size}{An integer specifying the number of samples for the glmnet lambda search. Default is 1000.}
 
-\item{T_hope}{A numeric value specifying the computation time threshold to decide between lars and glmnet. Default is 20.}
+\item{T_hope}{A numeric value specifying the computation time threshold (in seconds) to decide between lars and glmnet. Default is 20 s.}
 
 \item{seed}{An integer specifying the random seed for reproducibility. Default is 1.}
 
