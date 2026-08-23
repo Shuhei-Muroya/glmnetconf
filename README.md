@@ -22,6 +22,28 @@ or
 remotes::install_github("Shuhei-Muroya/glmnetconf")
 ```
 
+## Main function: `auto_lasso`
+
+The main function `auto_lasso` automatically selects the appropriate package 
+(`glmnet` or `lars`) and, when `glmnet` is used, tunes its configuration 
+based on the input data and a user-specified time constraint.
+
+**Arguments:**
+
+- `x`: The training design matrix.
+- `y`: The training response vector.
+- `new_x`: The test design matrix for prediction.
+- `T_hope`: The user-specified computation time constraint, **in seconds**. 
+  The function selects the configuration that maximizes accuracy 
+  while keeping the computation time within this constraint.
+
+**Value:**
+
+A list containing the estimated coefficients, predictions for `new_x`, 
+the tuned configuration, and the Pareto front (when `glmnet` is used). 
+The predicted computation time is also reported in seconds.
+
+
 ## Example
 
 This is a basic example :
@@ -40,7 +62,8 @@ y_test  <- dat$y_test
 
 
 # Automatically select the configuration and compute the lasso, predict for the test data.
-result<-auto_lasso(X_train, y_train, new_x=X_test,T_hope=20)
+# T_hope is the user-specified time constraint in seconds.
+result <- auto_lasso(X_train, y_train, new_x = X_test, T_hope = 20)
 
 # Check the estimated coefficients
 print(result$coefficients)
