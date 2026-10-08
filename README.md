@@ -54,7 +54,7 @@ library(MASS)
 library(glmnet)
 
 # Prepare data (Generate dummy data)
-dat <- data_generation(N_train = 1500, N_test = 100, p = 800, rho = 0.5, sparse_rate = 0.5, sigma = 1)
+dat <- data_generation(N_train = 1500, N_test = 100, p = 800, rho = 0.5, sparse_rate = 0.5, snr = 100)
 X_train <- dat$X_train
 y_train <- dat$y_train
 X_test  <- dat$X_test
